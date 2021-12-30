@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn code_party_back.wsgi
+web: gunicorn routine_paper_back.wsgi
