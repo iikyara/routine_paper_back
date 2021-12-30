@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,13 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# TODO:SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-5f!+dt6d6cl)$*^4=@!b4j07hdd&mvh*$r^f(&ox%@^0fl*+xz"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "routine_paper_back.herokuapp.com"]
 
 
 # Application definition
@@ -37,10 +38,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",  # Django CORS Headers
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # Django CORS Headers
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -114,10 +117,27 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# TODO:本番用ドメインを追加する必要あり
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://routine_paper_back.herokuapp.com",
+]
+
+# Heroku用
+try:
+    from .local_settings import *
+except ImportError:
+    import django_heroku
+    import dj_database_url
+
+    django_heroku.settings(locals())
+    db_from_env = dj_database_url.config()
+    DATABASES = {"default": dj_database_url.config()}
