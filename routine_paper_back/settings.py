@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-5f!+dt6d6cl)$*^4=@!b4j07hdd&mvh*$r^f(&ox%@^0fl*+xz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "routine_paper_back.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "routine-paper-back.herokuapp.com"]
 
 
 # Application definition
@@ -128,7 +128,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # TODO:本番用ドメインを追加する必要あり
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
-    "http://routine_paper_back.herokuapp.com",
+    "http://routine-paper-back.herokuapp.com",
 ]
 
 # Heroku用
