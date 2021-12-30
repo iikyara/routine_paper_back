@@ -6,9 +6,17 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
+black = "*"
+gunicorn = "*"
+django-heroku = "*"
+whitenoise = "*"
+dj-database-url = "*"
+django-cors-headers = "*"
 
 [dev-packages]
-black = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
