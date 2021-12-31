@@ -13,6 +13,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://routine-paper-back.herokuapp.com",
+]
+
 # ローカルでPostgreSQLをテストしたい場合，以下のコメントアウトを外す
 # import dj_database_url
 # db_from_env = dj_database_url.config()
