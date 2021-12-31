@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-5f!+dt6d6cl)$*^4=@!b4j07hdd&mvh*$r^f(&ox%@^0fl*+xz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "routine-paper-back.herokuapp.com"]
+ALLOWED_HOSTS = ["routine-paper-back.herokuapp.com"]
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "routine_api",
+    "rest_framework",
     "corsheaders",  # Django CORS Headers
 ]
 
@@ -106,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ja"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Tokyo"
 
 USE_I18N = True
 
@@ -125,9 +127,8 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# TODO:本番用ドメインを追加する必要あり
+# CORS
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
     "http://routine-paper-back.herokuapp.com",
 ]
 
