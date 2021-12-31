@@ -1,5 +1,10 @@
 from rest_framework import routers
-from .views import RoutineEveryDayViewSet, RoutineEveryWeekViewSet, RoutineSpecDayViewSet, SettingViewSet
+from .views import (
+    RoutineEveryDayViewSet,
+    RoutineEveryWeekViewSet,
+    RoutineSpecDayViewSet,
+    SettingViewSet,
+)
 
 
 router = routers.DefaultRouter()
