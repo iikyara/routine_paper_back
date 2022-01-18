@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from routine_api.urls import router as RoutineAPIRouter
-
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("routine/", include(RoutineAPIRouter.urls)),
+    path("routine/", include("routine_api.urls")),
+    path("user/", include("users.urls")),
+    path("auth/", include("drf_social_oauth2.urls", namespace="drf")),
+    path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
 ]

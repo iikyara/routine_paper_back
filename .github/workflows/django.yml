@@ -10,6 +10,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      DJANGO_SECRET_KEY: ${{secrets.DJANGO_SECRET_KEY}}
+      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: ${{secrets.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY}}
+      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: ${{secrets.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET}}
     strategy:
       max-parallel: 4
       matrix:
