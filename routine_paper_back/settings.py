@@ -139,7 +139,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # CORS
 CORS_ORIGIN_WHITELIST = [
-    "http://routine-paper-back.herokuapp.com",
+    "https://routine-paper.netlify.app",
 ]
 
 # AUTH setting

@@ -15,7 +15,7 @@ ALLOWED_HOSTS = ["*"]
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
-    "http://routine-paper-back.herokuapp.com",
+    "https://routine-paper.netlify.app",
 ]
 
 # ローカルでPostgreSQLをテストしたい場合，以下のコメントアウトを外す
