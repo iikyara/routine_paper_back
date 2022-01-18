@@ -8,48 +8,93 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Routine',
+            name="Routine",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('description', models.CharField(max_length=200)),
-                ('start_time', models.TimeField()),
-                ('finish_time', models.TimeField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("description", models.CharField(max_length=200)),
+                ("start_time", models.TimeField()),
+                ("finish_time", models.TimeField()),
             ],
         ),
         migrations.CreateModel(
-            name='Setting',
+            name="Setting",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('color', models.CharField(max_length=8)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("color", models.CharField(max_length=8)),
             ],
         ),
         migrations.CreateModel(
-            name='RoutineEveryDay',
+            name="RoutineEveryDay",
             fields=[
-                ('routine_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='routine_api.routine')),
+                (
+                    "routine_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="routine_api.routine",
+                    ),
+                ),
             ],
-            bases=('routine_api.routine',),
+            bases=("routine_api.routine",),
         ),
         migrations.CreateModel(
-            name='RoutineEveryWeek',
+            name="RoutineEveryWeek",
             fields=[
-                ('routine_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='routine_api.routine')),
-                ('week', models.IntegerField()),
+                (
+                    "routine_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="routine_api.routine",
+                    ),
+                ),
+                ("week", models.IntegerField()),
             ],
-            bases=('routine_api.routine',),
+            bases=("routine_api.routine",),
         ),
         migrations.CreateModel(
-            name='RoutineSpecDay',
+            name="RoutineSpecDay",
             fields=[
-                ('routine_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='routine_api.routine')),
-                ('date', models.DateField()),
+                (
+                    "routine_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="routine_api.routine",
+                    ),
+                ),
+                ("date", models.DateField()),
             ],
-            bases=('routine_api.routine',),
+            bases=("routine_api.routine",),
         ),
     ]

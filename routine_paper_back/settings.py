@@ -152,19 +152,19 @@ REST_FRAMEWORK = {
         #'rest_framework.permissions.IsAdminUse',
         "rest_framework.permissions.IsAuthenticated",
     ],
-   'DEFAULT_AUTHENTICATION_CLASSES': (
-      'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-      'drf_social_oauth2.authentication.SocialAuthentication',
-   ),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
+        "drf_social_oauth2.authentication.SocialAuthentication",
+    ),
 }
 
 AUTHENTICATION_BACKENDS = (
-   # Google OAuth2
-   'social_core.backends.google.GoogleOAuth2',
-   # drf-social-oauth2
-   'drf_social_oauth2.backends.DjangoOAuth2',
-   # Django
-   'django.contrib.auth.backends.ModelBackend',
+    # Google OAuth2
+    "social_core.backends.google.GoogleOAuth2",
+    # drf-social-oauth2
+    "drf_social_oauth2.backends.DjangoOAuth2",
+    # Django
+    "django.contrib.auth.backends.ModelBackend",
 )
 
 # Google configuration
@@ -173,8 +173,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 
 # Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-   'https://www.googleapis.com/auth/userinfo.email',
-   'https://www.googleapis.com/auth/userinfo.profile',
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
 ]
 
 # Heroku用
