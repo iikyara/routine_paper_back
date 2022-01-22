@@ -6,13 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('routine_api', '0004_initial'),
+        ("routine_api", "0004_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='routineeveryweek',
-            name='week',
-            field=models.IntegerField(choices=[(0, '日'), (1, '月'), (2, '火'), (3, '水'), (4, '木'), (5, '金'), (6, '土')], default=0),
+            model_name="routineeveryweek",
+            name="week",
+            field=models.IntegerField(
+                choices=[
+                    (0, "日"),
+                    (1, "月"),
+                    (2, "火"),
+                    (3, "水"),
+                    (4, "木"),
+                    (5, "金"),
+                    (6, "土"),
+                ],
+                default=0,
+            ),
         ),
     ]

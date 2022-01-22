@@ -8,7 +8,9 @@ from django.utils import timezone
 class Routine(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50, default="new routine")
-    description = models.CharField(max_length=200, default="you can write some description")
+    description = models.CharField(
+        max_length=200, default="you can write some description"
+    )
     start_time = models.TimeField(default=time.time)
     finish_time = models.TimeField(default=time.time)
     owner = models.ForeignKey(
@@ -16,6 +18,7 @@ class Routine(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     class Meta:
         abstract = True
 

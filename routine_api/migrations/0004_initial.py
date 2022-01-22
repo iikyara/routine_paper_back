@@ -14,66 +14,155 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('routine_api', '0003_remove_routineeveryday_routine_ptr_and_more'),
+        ("routine_api", "0003_remove_routineeveryday_routine_ptr_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Setting',
+            name="Setting",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('color', models.CharField(default='F0F0F0FF', max_length=8)),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_routine_setting', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("color", models.CharField(default="F0F0F0FF", max_length=8)),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="user_routine_setting",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='RoutineSpecDay',
+            name="RoutineSpecDay",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('name', models.CharField(default='new routine', max_length=50)),
-                ('description', models.CharField(default='you can write some description', max_length=200)),
-                ('start_time', models.TimeField(default=time.time)),
-                ('finish_time', models.TimeField(default=time.time)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('date', models.DateField(default=django.utils.timezone.now)),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_%(class)s', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("name", models.CharField(default="new routine", max_length=50)),
+                (
+                    "description",
+                    models.CharField(
+                        default="you can write some description", max_length=200
+                    ),
+                ),
+                ("start_time", models.TimeField(default=time.time)),
+                ("finish_time", models.TimeField(default=time.time)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("date", models.DateField(default=django.utils.timezone.now)),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="user_%(class)s",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='RoutineEveryWeek',
+            name="RoutineEveryWeek",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('name', models.CharField(default='new routine', max_length=50)),
-                ('description', models.CharField(default='you can write some description', max_length=200)),
-                ('start_time', models.TimeField(default=time.time)),
-                ('finish_time', models.TimeField(default=time.time)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('week', models.IntegerField(choices=[(0, '月'), (1, '火'), (2, '水'), (3, '木'), (4, '金'), (5, '土'), (6, '日')], default=0)),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_%(class)s', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("name", models.CharField(default="new routine", max_length=50)),
+                (
+                    "description",
+                    models.CharField(
+                        default="you can write some description", max_length=200
+                    ),
+                ),
+                ("start_time", models.TimeField(default=time.time)),
+                ("finish_time", models.TimeField(default=time.time)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "week",
+                    models.IntegerField(
+                        choices=[
+                            (0, "月"),
+                            (1, "火"),
+                            (2, "水"),
+                            (3, "木"),
+                            (4, "金"),
+                            (5, "土"),
+                            (6, "日"),
+                        ],
+                        default=0,
+                    ),
+                ),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="user_%(class)s",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='RoutineEveryDay',
+            name="RoutineEveryDay",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('name', models.CharField(default='new routine', max_length=50)),
-                ('description', models.CharField(default='you can write some description', max_length=200)),
-                ('start_time', models.TimeField(default=time.time)),
-                ('finish_time', models.TimeField(default=time.time)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_%(class)s', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("name", models.CharField(default="new routine", max_length=50)),
+                (
+                    "description",
+                    models.CharField(
+                        default="you can write some description", max_length=200
+                    ),
+                ),
+                ("start_time", models.TimeField(default=time.time)),
+                ("finish_time", models.TimeField(default=time.time)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="user_%(class)s",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

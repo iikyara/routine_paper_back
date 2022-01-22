@@ -6,27 +6,27 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('routine_api', '0002_initial'),
+        ("routine_api", "0002_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='setting',
-            name='owner',
+            model_name="setting",
+            name="owner",
         ),
         migrations.DeleteModel(
-            name='Routine',
+            name="Routine",
         ),
         migrations.DeleteModel(
-            name='RoutineEveryDay',
+            name="RoutineEveryDay",
         ),
         migrations.DeleteModel(
-            name='RoutineEveryWeek',
+            name="RoutineEveryWeek",
         ),
         migrations.DeleteModel(
-            name='RoutineSpecDay',
+            name="RoutineSpecDay",
         ),
         migrations.DeleteModel(
-            name='Setting',
+            name="Setting",
         ),
     ]
