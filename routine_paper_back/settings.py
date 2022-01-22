@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "social_django",
     "drf_social_oauth2",
     "corsheaders",
+    "django_filters",
     # Django Apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -155,6 +156,9 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
         "drf_social_oauth2.authentication.SocialAuthentication",
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
     ),
 }
 
