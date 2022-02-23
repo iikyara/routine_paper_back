@@ -1,13 +1,16 @@
-from django.shortcuts import render
-from django.contrib.auth import get_user_model
 from rest_framework import viewsets
+from rest_framework.response import Response
 
-from .serializer import UserSerializer
+from .models import FirebaseUser as User
+from .serializer import (
+    FirebaseUserSerializer as UserSerializer,
+    FirebaseUserSelfSerializer,
+)
 from .permission import UserPermission
 
-# Create your views here.
+
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = get_user_model().objects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (UserPermission,)
 
@@ -16,9 +19,16 @@ class UserViewSet(viewsets.ModelViewSet):
         if self.kwargs.get("pk") == "current" and self.request.user:
             obj = self.request.user
         else:
-            obj = super(UserViewSet, self).get_object()
+            return super(UserViewSet, self).get_object()
 
         # パーミッションを検証
         self.check_object_permissions(self.request, obj)
 
         return obj
+
+    def get_serializer(self, *args, **kwargs):
+        if self.kwargs.get("pk") == "current" and self.request.user:
+            serializer_class = FirebaseUserSelfSerializer
+            return serializer_class(*args, **kwargs)
+        else:
+            return super(UserViewSet, self).get_serializer(*args, **kwargs)

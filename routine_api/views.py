@@ -1,7 +1,5 @@
-from django_filters import rest_framework as filters
 from django.core.exceptions import ValidationError
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
 
 from .models import RoutineEveryDay, RoutineEveryWeek, RoutineSpecDay, Setting
 from .serializer import (

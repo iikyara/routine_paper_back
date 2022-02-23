@@ -20,6 +20,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("routine/", include("routine_api.urls")),
     path("user/", include("users.urls")),
-    path("auth/", include("drf_social_oauth2.urls", namespace="drf")),
-    path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
+    # path("auth/", include("drf_social_oauth2.urls", namespace="drf")),
+    # path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
 ]

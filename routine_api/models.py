@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
+from users.models import FirebaseUser as User
+
 
 # Create your models here.
 class Routine(models.Model):
@@ -14,7 +16,7 @@ class Routine(models.Model):
     start_time = models.TimeField(default=time.time)
     finish_time = models.TimeField(default=time.time)
     owner = models.ForeignKey(
-        get_user_model(), related_name="user_%(class)s", on_delete=models.CASCADE
+        User, related_name="user_%(class)s", on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -58,7 +60,7 @@ class Setting(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     color = models.CharField(max_length=8, default="F0F0F0FF")
     owner = models.ForeignKey(
-        get_user_model(), related_name="user_routine_setting", on_delete=models.CASCADE
+        User, related_name="user_routine_setting", on_delete=models.CASCADE
     )
 
     def __str__(self):
