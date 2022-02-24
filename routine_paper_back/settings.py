@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+import firebase_admin
+from firebase_admin import credentials
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,8 +26,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # TODO:SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("DJANGO_SECRET_KEY")
 
+# FIREBASE SETTING
+keys_dict = {
+    "type": config("FIREBASE_TYPE"),
+    "project_id": config("FIREBASE_PROJECT_ID"),
+    "private_key_id": config("FIREBASE_PRIVATE_KEY_ID"),
+    "private_key": config("FIREBASE_PRIVATE_KEY"),
+    "client_email": config("FIREBASE_CLIENT_EMAIL"),
+    "client_id": config("FIREBASE_CLIENT_ID"),
+    "auth_uri": config("FIREBASE_AUTH_URI"),
+    "token_uri": config("FIREBASE_TOKEN_URI"),
+    "auth_provider_x509_cert_url": config("FIREBASE_AUTH_PROVIDER_X509_CERT_URL"),
+    "client_x509_cert_url": config("FIREBASE_CLIENT_X509_CERT_URL"),
+}
+keys_dict["private_key"] = keys_dict["private_key"].replace(
+    r"\n",
+    "\n",
+)  # keyに改行コードが含まれているのでそれの変換処理
+cred = credentials.Certificate(keys_dict)
+firebase_admin.initialize_app(cred)
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["routine-paper-back.herokuapp.com"]
 
@@ -38,11 +60,9 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     # Third-Party Apps
     "rest_framework",
-    "oauth2_provider",
-    "social_django",
-    "drf_social_oauth2",
     "corsheaders",
     "django_filters",
+    "firebase_admin",
     # Django Apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -76,8 +96,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "social_django.context_processors.backends",
-                "social_django.context_processors.login_redirect",
             ],
         },
     },
@@ -149,35 +167,11 @@ AUTH_USER_MODEL = "users.User"
 # REST FRAMEWORK
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        #'rest_framework.permissions.IsAdminUse',
         "rest_framework.permissions.IsAuthenticated",
     ],
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
-        "drf_social_oauth2.authentication.SocialAuthentication",
-    ),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("users.auth.FirebaseAuthentication",),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
 }
-
-AUTHENTICATION_BACKENDS = (
-    # Google OAuth2
-    "social_core.backends.google.GoogleOAuth2",
-    # drf-social-oauth2
-    "drf_social_oauth2.backends.DjangoOAuth2",
-    # Django
-    "django.contrib.auth.backends.ModelBackend",
-)
-
-# Google configuration
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
-
-# Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-    "https://www.googleapis.com/auth/userinfo.email",
-    "https://www.googleapis.com/auth/userinfo.profile",
-]
 
 # Heroku用
 try:

@@ -1,18 +1,15 @@
 from rest_framework import permissions
+from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 
-class UserPermission(permissions.BasePermission):
+class UserPermission(BasePermission):
     def has_permission(self, request, view) -> bool:
-        # アカウント作成は認証なしで提供
-        if view.action == "create":
-            return True
-        # 閲覧はスーパーユーザに制限
-        elif view.action == "list":
-            return request.user.is_authenticated and request.user.is_superuser
-        # それ以外のアクションは認証済みユーザに提供
-        else:
-            return request.user.is_authenticated
+        # 追加アクション以外は許可
+        return view.action != "create"
 
     def has_object_permission(self, request, view, obj) -> bool:
+        # 基本情報への閲覧は許可
+        if request.method in SAFE_METHODS:
+            return True
         # オブジェクト操作系は本人のみ有効
         return obj == request.user
