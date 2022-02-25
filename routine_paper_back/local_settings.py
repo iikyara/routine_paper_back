@@ -13,10 +13,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "https://routine-paper.netlify.app",
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 # ローカルでPostgreSQLをテストしたい場合，以下のコメントアウトを外す
 # import dj_database_url
