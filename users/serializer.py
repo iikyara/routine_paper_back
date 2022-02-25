@@ -20,6 +20,12 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
+class FirebaseUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FirebaseUser
+        fields = "__all__"
+
+
 class FirebaseUserSelfSerializer(serializers.ModelSerializer):
     class Meta:
         model = FirebaseUser
@@ -27,7 +33,7 @@ class FirebaseUserSelfSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "email", "date_joined")
 
 
-class FirebaseUserSerializer(serializers.ModelSerializer):
+class FirebaseUserViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = FirebaseUser
         fields = ("id", "screen_name", "picture", "date_joined")

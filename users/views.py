@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 from .models import FirebaseUser as User
 from .serializer import (
-    FirebaseUserSerializer as UserSerializer,
+    FirebaseUserViewSerializer as UserSerializer,
     FirebaseUserSelfSerializer,
 )
 from .permission import UserPermission
